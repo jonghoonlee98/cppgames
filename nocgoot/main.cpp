@@ -10,14 +10,23 @@
 
 using namespace sf;
 using namespace std;
+void playGame(RenderWindow &,int,int);
 
 int main()
 {
-	srand(time(NULL));
-    int windowWidth = 1536;
+	int windowWidth = 1536;
     int windowHeight = 1152;
+    RenderWindow window(VideoMode(windowWidth, windowHeight), "nocgoot");
+	playGame(window,windowWidth,windowHeight);
+    return 0;
+}
 
-    RenderWindow window(VideoMode(windowWidth, windowHeight), "Pac-Pong");
+void playGame(RenderWindow &window,int windowWidth,int windowHeight)
+{
+	srand(time(NULL));
+
+
+
     int score = 0;
     int lives = 1;
  	bool gameover=false;
@@ -180,16 +189,14 @@ int main()
 			gameover=true;
 		}
 
-		if (star.getPosition().intersects(player.getPosition()))
+		if (star.getPosition().intersects(player.getPosition())&&gameover==false)
 		{
 			score+=10;
 		    float star_xpos = rand()/(float)RAND_MAX*(windowWidth-60)+10;
 			float star_ypos = rand()/(float)RAND_MAX*(windowHeight-60)+10;
 			star.changePos(star_xpos,star_ypos);
 		}
-
-		if(gameover==true)
-			break;
+			
 
 		for(int i=0;i<num_balls;i++)
 			ball[i].update();
@@ -201,6 +208,15 @@ int main()
 		stringstream ss;
 		ss << "Score:" << score << "    Lives:" << lives;
 		hud.setString(ss.str());
+
+		if(gameover==true) {
+			stringstream ss;
+			ss << "GAMEOVER" << endl << "Final Score: " << score <<
+			endl<<"To play again, press 1";
+			hud.setString(ss.str());	
+			if(Keyboard::isKeyPressed(Keyboard::Num1))
+				playGame(window,windowWidth,windowHeight);
+		}
 
          /*
             Draw the frame
@@ -228,5 +244,4 @@ int main()
         window.display();
     }	// This is the end of the "while" loop
   
-    return 0;
 }
