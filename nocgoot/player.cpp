@@ -59,3 +59,8 @@ void Player::update()
 {
     playerShape.setPosition(position);
 }
+
+void Player::gameover()
+{
+    playerSpeed = 0.0f;
+}

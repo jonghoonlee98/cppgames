@@ -32,5 +32,7 @@ public:
     void moveDown();
  
     void update();
+
+    void gameover();
  
 };

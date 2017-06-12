@@ -34,3 +34,8 @@ void Ghost::chase(float xpos,float ypos)
 	else
 		position.y-=ghostSpeed;
 }
+
+void Ghost::gameover()
+{
+	ghostSpeed=0.0f;
+}

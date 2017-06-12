@@ -152,10 +152,19 @@ void playGame(RenderWindow &window,int windowWidth,int windowHeight)
 	   	}
 
 	   	if(dur>time_new_level) {
-	   		float xspeed = (rand()/(float)RAND_MAX*0.4)+0.75;
-	    	float yspeed = (rand()/(float)RAND_MAX*0.4)+0.75;
+	   		float xspeed,yspeed;
+	   		int x=rand()%2;
+	   		int y=rand()%2;
+	   		if(x==0)
+	   			xspeed = (rand()/(float)RAND_MAX*0.4)+0.75;
+	   		else
+	   			xspeed = -((rand()/(float)RAND_MAX*0.4)+0.75);
+	   		if(y==0)
+	    		yspeed = (rand()/(float)RAND_MAX*0.4)+0.75;
+	    	else
+	    		yspeed = -((rand()/(float)RAND_MAX*0.4)+0.75);
 	   		ball[num_balls-1].changeVel(xspeed,yspeed);
-	   		time_new_level+=12500;
+	   		time_new_level+=22500;
 	   		ball[num_balls-1].nowInPlay();
 	   		for(int i=0;i<5;i++)
 	   			blink[i]=false;
@@ -191,7 +200,7 @@ void playGame(RenderWindow &window,int windowWidth,int windowHeight)
 
 		if (star.getPosition().intersects(player.getPosition())&&gameover==false)
 		{
-			score+=10;
+			score+=5;
 		    float star_xpos = rand()/(float)RAND_MAX*(windowWidth-60)+10;
 			float star_ypos = rand()/(float)RAND_MAX*(windowHeight-60)+10;
 			star.changePos(star_xpos,star_ypos);
@@ -210,6 +219,8 @@ void playGame(RenderWindow &window,int windowWidth,int windowHeight)
 		hud.setString(ss.str());
 
 		if(gameover==true) {
+			player.gameover();
+			ghost.gameover();
 			stringstream ss;
 			ss << "GAMEOVER" << endl << "Final Score: " << score <<
 			endl<<"To play again, press 1";

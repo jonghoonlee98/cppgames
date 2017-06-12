@@ -15,4 +15,5 @@ public:
     CircleShape getShape();
     void update();
     void chase(float xpos,float ypos);
+    void gameover();
 };
