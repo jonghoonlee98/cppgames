@@ -156,13 +156,13 @@ void playGame(RenderWindow &window,int windowWidth,int windowHeight)
 	   		int x=rand()%2;
 	   		int y=rand()%2;
 	   		if(x==0)
-	   			xspeed = (rand()/(float)RAND_MAX*0.4)+0.75;
+	   			xspeed = (rand()/(float)RAND_MAX*0.4)+0.65;
 	   		else
-	   			xspeed = -((rand()/(float)RAND_MAX*0.4)+0.75);
+	   			xspeed = -((rand()/(float)RAND_MAX*0.4)+0.65);
 	   		if(y==0)
-	    		yspeed = (rand()/(float)RAND_MAX*0.4)+0.75;
+	    		yspeed = (rand()/(float)RAND_MAX*0.4)+0.65;
 	    	else
-	    		yspeed = -((rand()/(float)RAND_MAX*0.4)+0.75);
+	    		yspeed = -((rand()/(float)RAND_MAX*0.4)+0.65);
 	   		ball[num_balls-1].changeVel(xspeed,yspeed);
 	   		time_new_level+=22500;
 	   		ball[num_balls-1].nowInPlay();
